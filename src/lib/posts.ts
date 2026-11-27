@@ -1,10 +1,11 @@
 import { db } from './db';
-import { KINDS, PLACES } from '@/data/posts';
-import type { Kind, Place, Post } from '@/types';
+import { CATEGORIES, KINDS, PLACES } from '@/data/posts';
+import type { Category, Kind, Place, Post } from '@/types';
 
 export interface PostFilters {
   q?: string;
   kind?: Kind;
+  category?: Category;
   place?: Place;
   sort?: 'date-desc' | 'date-asc';
 }
@@ -15,11 +16,13 @@ export const firstValue = (value: string | string[] | undefined): string =>
 
 export function parsePostFilters(params: SearchValues): PostFilters {
   const kind = firstValue(params.kind);
+  const category = firstValue(params.category);
   const place = firstValue(params.place);
   const sort = firstValue(params.sort);
   return {
     q: firstValue(params.q).trim(),
     kind: KINDS.find((value) => value === kind),
+    category: CATEGORIES.find((value) => value === category),
     place: PLACES.find((value) => value === place),
     sort: sort === 'date-desc' || sort === 'date-asc' ? sort : undefined,
   };
@@ -32,6 +35,7 @@ export async function getPublicPosts(filters: PostFilters = {}): Promise<Post[]>
     post.status === 'approved' && !post.resolved &&
     (!query || post.title.toLocaleLowerCase('vi').includes(query)) &&
     (!filters.kind || post.kind === filters.kind) &&
+    (!filters.category || post.category === filters.category) &&
     (!filters.place || post.place === filters.place),
   );
   if (filters.sort) {

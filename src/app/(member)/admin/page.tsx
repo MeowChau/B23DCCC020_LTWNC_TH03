@@ -16,8 +16,12 @@ export default async function AdminPage() {
   const hidden = db.posts.filter((post) => post.status === 'hidden').length;
   return (
     <div className="container page-space">
-      <h1>Kiểm duyệt tin đăng</h1>
-      <p className="admin-stats">Chờ duyệt: <strong>{pending.length}</strong> | Đang hiển thị: <strong>{visible}</strong> | Đã ẩn: <strong>{hidden}</strong></p>
+      <div className="page-heading"><h1>Kiểm duyệt tin đăng</h1></div>
+      <p className="admin-stats">
+        <span>Chờ duyệt: <strong>{pending.length}</strong></span><span className="sr-only"> | </span>
+        <span>Đang hiển thị: <strong>{visible}</strong></span><span className="sr-only"> | </span>
+        <span>Đã ẩn: <strong>{hidden}</strong></span>
+      </p>
       {pending.length ? <div className="table-scroll">
         <table>
           <caption className="sr-only">Tin chờ duyệt</caption>
