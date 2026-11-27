@@ -10,7 +10,7 @@ export function PublicTable({ posts }: { posts: Post[] }) {
     <div className="table-scroll">
       <table>
         <caption className="sr-only">Danh sách tin đang hiển thị</caption>
-        <thead><tr><th scope="col">Đồ vật cần tìm chủ</th><th scope="col">Loại tin</th><th scope="col">Địa điểm</th><th scope="col">Ngày</th></tr></thead>
+        <thead><tr><th scope="col">Tiêu đề</th><th scope="col">Loại tin</th><th scope="col">Địa điểm</th><th scope="col">Ngày</th></tr></thead>
         <tbody>{posts.map((post) => <tr key={post.id}>
           <td><div className="post-title-cell"><span className="item-icon"><ItemIcon category={post.category} /></span><div><Link href={`/posts/${post.id}`} className="post-link">{post.title}</Link><span className="cell-subtext">{post.category}</span></div></div></td>
           <td><KindBadge kind={post.kind} /></td><td>{post.place}</td><td className="nowrap">{formatDate(post.date)}</td>

@@ -50,6 +50,7 @@ main { min-height: calc(100vh - 165px); }
 .hero-search { display: flex; align-items: stretch; gap: 6px; padding: 5px; border: 1px solid #a4b9ba; border-radius: 6px; max-width: 490px; margin: 23px 0 16px; }
 .hero-search input { min-width: 0; flex: 1; border: 0; }
 .hero-search .button { white-space: nowrap; }
+.hero-links { display: flex; flex-wrap: wrap; gap: 12px 22px; }
 .hero-art svg { display: block; width: 100%; height: auto; }
 .home-page { padding-bottom: 62px; }
 .notice-strip { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 15px 30px; padding: 16px 23px; border-top: 2px solid var(--ink); background: var(--soft); }

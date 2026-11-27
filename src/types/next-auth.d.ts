@@ -9,7 +9,7 @@ declare module 'next-auth' {
     user: DefaultSession['user'] & { role: Role };
   }
 }
-declare module 'next-auth/jwt' {
+declare module '@auth/core/jwt' {
   interface JWT {
     role: Role;
   }

@@ -18,7 +18,10 @@ export default async function HomePage() {
             <input id="home-q" name="q" placeholder="Thẻ sinh viên, ví, chìa khóa…" />
             <button type="submit" className="button">Tìm đồ</button>
           </form>
-          <Link href="/posts" className="text-link">Xem tất cả tin</Link>
+          <div className="hero-links">
+            <Link href="/posts" className="text-link">Xem tất cả tin</Link>
+            <Link href="/my-posts" className="text-link">Đăng tin</Link>
+          </div>
         </div>
         <div className="hero-art"><FoundIllustration /></div>
       </section>
