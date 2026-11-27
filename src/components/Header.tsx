@@ -3,11 +3,20 @@
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { signOut, useSession } from 'next-auth/react';
+import { useEffect, useRef } from 'react';
 
 export function Header() {
   const path = usePathname();
-  const { data: session } = useSession();
+  const { data: session, status, update } = useSession();
+  const previousPath = useRef(path);
   const user = session?.user;
+
+  useEffect(() => {
+    if (path !== '/login' && status === 'loading') return;
+    const leftLogin = previousPath.current === '/login' && path !== '/login';
+    previousPath.current = path;
+    if (leftLogin && status === 'unauthenticated') void update();
+  }, [path, status, update]);
   return (
     <header className="site-header">
       <div className="container header-inner">
